@@ -18,7 +18,7 @@ def pressFor(periode, training):
 		inGameSnapshot = device.takeSnapshot()
 		stickLength = 0
 		for i in range(stickSourceY):
-			if inGameSnapshot.getRawPixelInt(stickSourceX,stickSourceY-i) == blackIntValue:
+			if inGameSnapshot.getRawPixelInt(myCoords["points1"][0],myCoords["points1"][1]-i) == blackIntValue:
 				stickLength = i
 			else:
 				break
@@ -56,9 +56,8 @@ def runTheGame():
 	runComponent = package + '/' + activity
 	device.startActivity(component=runComponent)
 	MonkeyRunner.sleep(6)
-	device.touch(350,650,MonkeyDevice.DOWN_AND_UP)
+	device.touch(myCoords["point0"][0],myCoords["point0"][1],MonkeyDevice.DOWN_AND_UP)
 	MonkeyRunner.sleep(2)
-
 
 package = 'com.ketchapp.stickhero'
 activity = 'com.ketchapp.stickhero.stickhero'
@@ -68,7 +67,6 @@ currentDirectory = '/Users/MacBook/offlineDesktop/python/StickHeroBot/'
 
 shareImageReferenceUrl = currentDirectory+'shareReference.png'
 redSquareReferenceUrl = currentDirectory+'redSquareReference.png'
-playerSubImageBox = (115, 865, 47,50)
 shareButtonBox = (270, 690, 171,61)
 redLineY = 905
 bridgeLineX = 160
@@ -81,6 +79,13 @@ openAutomatically = False
 trainingRepetition = 1
 trainingMaterial = []
 trainingPoints = []
+
+# screen coord needed for the bot
+myCoords = []
+myCoords[ "point0" ] = [350,650] 		# begin button
+myCoords[ "point1" ] = [162,905]		# stick source
+myCoords[ "point2" ] = [350,650]		# play area to press
+myCoords[ "point3" ] = [162,905]		# share button
 
 #these are preprocessed value but you can make your own
 b = 0.8300544 #5.69149542 #14.53295326
